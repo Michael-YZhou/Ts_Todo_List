@@ -1,21 +1,21 @@
 import { useRef, type FormEvent } from "react";
 
-type NewGoalProps = {
-  onAddGoal: (goal: string, summary: string) => void;
+type NewTodoProps = {
+  onAddTodo: (todo: string, summary: string) => void;
 };
 
-export default function NewGoal({ onAddGoal }: NewGoalProps) {
-  const goal = useRef<HTMLInputElement>(null);
+export default function NewTodo({ onAddTodo }: NewTodoProps) {
+  const todo = useRef<HTMLInputElement>(null);
   const summary = useRef<HTMLInputElement>(null);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const enteredGoal = goal.current!.value;
+    const enteredTodo = todo.current!.value;
     const enteredSummary = summary.current!.value;
 
     event.currentTarget.reset();
-    onAddGoal(enteredGoal, enteredSummary);
+    onAddTodo(enteredTodo, enteredSummary);
   }
 
   return (
@@ -23,15 +23,15 @@ export default function NewGoal({ onAddGoal }: NewGoalProps) {
       <p>
         <label
           className="block text-[0.85rem] font-bold uppercase text-[#dfd9be]"
-          htmlFor="goal"
+          htmlFor="todo"
         >
-          Your Goal
+          Your Task
         </label>
         <input
           className="w-full p-2 bg-[#b4b6c4] border-none rounded"
-          id="goal"
+          id="todo"
           type="text"
-          ref={goal}
+          ref={todo}
         />
       </p>
       <p>
@@ -50,7 +50,7 @@ export default function NewGoal({ onAddGoal }: NewGoalProps) {
       </p>
       <p>
         <button className="block w-full p-3 mt-4 bg-[#f7e596] text-[#3a4346] font-bold rounded hover:bg-[#f9e175]">
-          Add Goal
+          Add Task
         </button>
       </p>
     </form>

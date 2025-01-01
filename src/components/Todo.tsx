@@ -1,18 +1,13 @@
 import { type ReactNode } from "react";
 
-type CourseGoalProps = {
+type TodoProps = {
   title: string;
   children: ReactNode;
   id: number;
   onDelete: (id: number) => void;
 };
 
-export default function CourseGoal({
-  title,
-  children,
-  id,
-  onDelete,
-}: CourseGoalProps) {
+export default function Todo({ title, children, id, onDelete }: TodoProps) {
   return (
     <article className="flex items-start justify-between">
       <div>
