@@ -2,7 +2,7 @@ import TodoList from "./components/TodoList.tsx";
 import Header from "./components/Header.tsx";
 import todosImg from "./assets/todo-list.jpg";
 import { useState } from "react";
-import NewTodo from "./components/newTodo.tsx";
+import NewTodo from "./components/NewTodo.tsx";
 
 export type Todo = {
   title: string;
