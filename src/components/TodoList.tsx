@@ -6,9 +6,14 @@ import { ReactNode } from "react";
 type TodoListProps = {
   todos: TodoTask[];
   onDeleteTodo: (id: number) => void;
+  onToggleTodo: (id: number) => void;
 };
 
-export default function TodoList({ todos, onDeleteTodo }: TodoListProps) {
+export default function TodoList({
+  todos,
+  onDeleteTodo,
+  onToggleTodo,
+}: TodoListProps) {
   // Display a hint box if there are no Todos
   if (todos.length === 0) {
     return <InfoBox mode="hint">No Tasks found. Maybe add one?</InfoBox>;
@@ -33,10 +38,14 @@ export default function TodoList({ todos, onDeleteTodo }: TodoListProps) {
             className="bg-[#475357] p-4 rounded shadow-[0_0_10px_rgba(0,0,0,0.25)]"
             key={todo.id}
           >
-            <Todo title={todo.title} id={todo.id} onDelete={onDeleteTodo}>
-              <p className="m-0 text-[0.85rem] text-[#dfd9be]">
-                {todo.description}
-              </p>
+            <Todo
+              title={todo.title}
+              id={todo.id}
+              completed={todo.completed}
+              onDelete={onDeleteTodo}
+              toggleTodo={onToggleTodo}
+            >
+              {todo.description}
             </Todo>
           </li>
         ))}
