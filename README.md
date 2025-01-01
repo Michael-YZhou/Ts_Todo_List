@@ -1,50 +1,81 @@
-# React + TypeScript + Vite
+# To-Do List Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the **To-Do List Application**, a simple to-do list app designed to help you stay organized and manage your tasks efficiently.
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [To-Do List Application](#to-do-list-application)
+  - [Table of Contents](#table-of-contents)
+  - [Features](#features)
+  - [Demo](#demo)
+  - [Technologies Used](#technologies-used)
+  - [Getting Started](#getting-started)
+    - [Installation](#installation)
+    - [Running the Application](#running-the-application)
+  - [Deployment](#deployment)
+  - [License](#license)
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Add new tasks to your to-do list
+- Mark tasks as complete or incomplete
+- Delete tasks you no longer need
+- Real-time updates with a responsive UI
+- Clean and minimalistic design
 
-- Configure the top-level `parserOptions` property like this:
+## Demo
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+The application is live and deployed at: [ts-todo-list.onrender.com](https://ts-todo-list.onrender.com)
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Technologies Used
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- **Build Tool**: Vite
+- **Frontend**: React with TypeScript
+- **Styling**: Tailwind CSS
+- **Deployment**: Render.com
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Getting Started
+
+### Installation
+
+To run this application locally, follow these steps:
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/Michael-YZhou/TS_Todo_List.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd TS_Todo_List
+   ```
+
+3. Install the dependencies:
+
+   ```bash
+   npm install
+   ```
+
+### Running the Application
+
+1. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+2. Open your browser and navigate to `http://localhost:5173` to view the application.
+
+## Deployment
+
+The application is deployed on Render.com. Any changes pushed to the main branch will automatically trigger a deployment.
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for more information.
+
+---
+
+Feel free to explore, use, and enhance the application! If you have any questions or feedback, please don't hesitate to reach out.
