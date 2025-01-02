@@ -11,8 +11,14 @@ export default function NewTodo({ onAddTodo }: NewTodoProps) {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const enteredTodo = todo.current!.value;
-    const enteredSummary = summary.current!.value;
+    const enteredTodo = todo.current!.value.trim();
+    const enteredSummary = summary.current!.value.trim();
+
+    // both input must not be empty
+    if (!enteredTodo || !enteredSummary) {
+      alert("Please fill out both fields.");
+      return; // stop here if inputs are empty
+    }
 
     event.currentTarget.reset();
     onAddTodo(enteredTodo, enteredSummary);
