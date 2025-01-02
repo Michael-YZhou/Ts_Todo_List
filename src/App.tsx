@@ -3,13 +3,7 @@ import Header from "./components/Header.tsx";
 import todosImg from "./assets/todo-list.jpg";
 import { useState } from "react";
 import NewTodo from "./components/NewTodo.tsx";
-
-export type Todo = {
-  title: string;
-  description: string;
-  id: number;
-  completed: boolean;
-};
+import { Todo } from "./types";
 
 export default function App() {
   const [todos, setTodos] = useState<Todo[]>([]);

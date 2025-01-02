@@ -1,5 +1,5 @@
 import Todo from "./Todo";
-import { type Todo as TodoTask } from "../App";
+import { type Todo as TodoTask } from "../types";
 import InfoBox from "./InfoBox";
 import { ReactNode } from "react";
 
