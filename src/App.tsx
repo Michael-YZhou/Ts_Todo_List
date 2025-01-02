@@ -1,9 +1,13 @@
+import { useState } from "react";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import TodoList from "./components/TodoList.tsx";
 import Header from "./components/Header.tsx";
 import todosImg from "./assets/todo-list.jpg";
-import { useState } from "react";
 import NewTodo from "./components/NewTodo.tsx";
 import { Todo } from "./types";
+
+// Create a new instance of QueryClient
+const queryClient = new QueryClient();
 
 export default function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -36,18 +40,21 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen pt-12 bg-gradient-to-b from-[#f0f6f8] to-[#e0e1e7] font-poppins">
-      <main className="w-[90%] max-w-[40rem] mx-auto p-8 bg-[#3a4346] text-[#1b1b1b] rounded-md shadow-[0_0_10px_rgba(0,0,0,0.25)]">
-        <Header image={{ src: todosImg, alt: "A list of todos" }}>
-          <h1 className="m-0 text-[1.75rem] text-[#f7e596]">TODO LIST</h1>
-        </Header>
-        <NewTodo onAddTodo={handleAddTodo} />
-        <TodoList
-          todos={todos}
-          onDeleteTodo={handleDeleteTodo}
-          onToggleTodo={toggleTodo}
-        />
-      </main>
-    </div>
+    // Wrap the entire app with QueryClientProvider
+    <QueryClientProvider client={queryClient}>
+      <div className="min-h-screen pt-12 bg-gradient-to-b from-[#f0f6f8] to-[#e0e1e7] font-poppins">
+        <main className="w-[90%] max-w-[40rem] mx-auto p-8 bg-[#3a4346] text-[#1b1b1b] rounded-md shadow-[0_0_10px_rgba(0,0,0,0.25)]">
+          <Header image={{ src: todosImg, alt: "A list of todos" }}>
+            <h1 className="m-0 text-[1.75rem] text-[#f7e596]">TODO LIST</h1>
+          </Header>
+          <NewTodo onAddTodo={handleAddTodo} />
+          <TodoList
+            todos={todos}
+            onDeleteTodo={handleDeleteTodo}
+            onToggleTodo={toggleTodo}
+          />
+        </main>
+      </div>
+    </QueryClientProvider>
   );
 }
