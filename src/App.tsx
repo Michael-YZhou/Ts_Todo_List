@@ -1,13 +1,11 @@
 import { useState } from "react";
-import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "./util/http.ts";
 import TodoList from "./components/TodoList.tsx";
 import Header from "./components/Header.tsx";
 import todosImg from "./assets/todo-list.jpg";
 import NewTodo from "./components/NewTodo.tsx";
 import { Todo } from "./types";
-
-// Create a new instance of QueryClient
-const queryClient = new QueryClient();
 
 export default function App() {
   const [todos, setTodos] = useState<Todo[]>([]);

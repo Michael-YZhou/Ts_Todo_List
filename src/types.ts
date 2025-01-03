@@ -33,3 +33,18 @@ export interface FetchError<T> extends Error {
   code?: number;
   info?: T;
 }
+
+/**
+ * The properties needed to create a new todo and send in POST request
+ */
+export interface CreateTodoRequest {
+  title: string;
+  summary: string;
+}
+
+/**
+ * The shape of a success response returned by the server.
+ */
+export interface CreateTodoSuccessResponse {
+  todo: Todo;
+}

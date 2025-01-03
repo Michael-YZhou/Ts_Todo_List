@@ -35,11 +35,16 @@ export default function TodoList({
   }
 
   if (isError) {
-    const fetchError = error as FetchError<FetchTodosErrorResponse>;
+    //const fetchError = error as FetchError<FetchTodosErrorResponse>;
     content = (
       <ErrorBlock
         title="An error occurred"
-        message={fetchError.info?.details || "Failed to fetch tasks"}
+        message={
+          // use typescript as to check if error is a FetchError
+          // if it is, get the details from the info property
+          (error as FetchError<{ details: string }>)?.info?.details ||
+          "Failed to fetch tasks"
+        }
       />
     );
   }
