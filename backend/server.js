@@ -46,7 +46,11 @@ function writeTodos(todos) {
 app.get("/todos", (req, res) => {
   try {
     const todos = readTodos();
-    return res.json({ todos });
+    // return res.json({ todos });
+    // set a timeout to simulate a slow network
+    setTimeout(() => {
+      return res.json({ todos });
+    }, 500);
   } catch (err) {
     return res
       .status(500)
@@ -76,7 +80,11 @@ app.post("/todos", (req, res) => {
     todos.push(newTodo);
     writeTodos(todos);
 
-    return res.status(201).json(newTodo);
+    // return res.status(201).json(newTodo);
+    // set a timeout to simulate a slow network
+    setTimeout(() => {
+      return res.status(201).json(newTodo);
+    }, 500);
   } catch (err) {
     return res
       .status(500)

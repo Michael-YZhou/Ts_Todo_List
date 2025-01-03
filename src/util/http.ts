@@ -1,9 +1,4 @@
 import { QueryClient } from "@tanstack/react-query";
-
-// Create a new instance of QueryClient to use in other components
-export const queryClient = new QueryClient();
-
-// fetchTodos.ts
 import {
   Todo,
   FetchTodosSuccessResponse,
@@ -13,7 +8,16 @@ import {
   CreateTodoSuccessResponse,
 } from "../types";
 
-// Fetch all todos from the server
+/**
+ * Create and export a new instance of QueryClient here to use in other components.
+ * e.g. invalidate cached data
+ */
+export const queryClient = new QueryClient();
+
+/**
+ * Fetch all todos from the server
+ * @returns an array of todos
+ */
 export async function fetchTodos(): Promise<Todo[]> {
   const response = await fetch("http://localhost:3000/todos");
 
@@ -37,7 +41,11 @@ export async function fetchTodos(): Promise<Todo[]> {
   return data.todos;
 }
 
-// Create a new todo on the server
+/**
+ * Create a new todo on the server
+ * @param todoData the todo data to create
+ * @returns the created todo
+ */
 export async function createNewTodo(
   todoData: CreateTodoRequest
 ): Promise<Todo> {
@@ -65,4 +73,32 @@ export async function createNewTodo(
   // Expect the shape: { "todo": { ... } }
   const data: CreateTodoSuccessResponse = await response.json();
   return data.todo;
+}
+
+/**
+ * Delete a todo from the server
+ * @param param0 id of the todo to delete
+ * @returns the deleted todo
+ */
+export async function deleteTodo({ id }: { id: number }): Promise<Todo> {
+  const response = await fetch(`http://localhost:3000/todos/${id}`, {
+    method: "DELETE",
+  });
+
+  // Handle error responses
+  if (!response.ok) {
+    const errorBody: { error: string; details?: string } =
+      await response.json();
+
+    const error: FetchError<{ error: string; details?: string }> = new Error(
+      "An error occurred while deleting the task"
+    ) as FetchError<{ error: string; details?: string }>;
+    error.code = response.status;
+    error.info = errorBody;
+
+    throw error;
+  }
+
+  // Parse and return the deleted todo
+  return response.json();
 }

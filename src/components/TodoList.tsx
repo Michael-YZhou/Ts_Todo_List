@@ -1,27 +1,13 @@
 import { ReactNode } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Todo from "./Todo";
-import {
-  type Todo as TodoTask,
-  FetchError,
-  FetchTodosErrorResponse,
-} from "../types";
+import { FetchError } from "../types";
 import InfoBox from "./InfoBox";
 import { fetchTodos } from "../util/http";
 import LoadingIndicator from "./LoadingIndicator";
 import ErrorBlock from "./ErrorBlock";
 
-type TodoListProps = {
-  todos: TodoTask[];
-  onDeleteTodo: (id: number) => void;
-  onToggleTodo: (id: number) => void;
-};
-
-export default function TodoList({
-  todos,
-  onDeleteTodo,
-  onToggleTodo,
-}: TodoListProps) {
+export default function TodoList() {
   // Fetch Todos from the server using React Query
   const { data, isPending, isError, error } = useQuery({
     queryKey: ["todos"],
@@ -35,7 +21,6 @@ export default function TodoList({
   }
 
   if (isError) {
-    //const fetchError = error as FetchError<FetchTodosErrorResponse>;
     content = (
       <ErrorBlock
         title="An error occurred"
@@ -50,7 +35,6 @@ export default function TodoList({
   }
 
   if (data) {
-    console.log(data);
     content = (
       <ul className="grid gap-4 list-none p-0 m-0 grid-cols-[repeat(auto-fit,minmax(15rem,1fr))] mt-8">
         {data.map((todo) => (
@@ -58,13 +42,7 @@ export default function TodoList({
             className="bg-[#475357] p-4 rounded shadow-[0_0_10px_rgba(0,0,0,0.25)]"
             key={todo.id}
           >
-            <Todo
-              title={todo.title}
-              id={todo.id}
-              completed={todo.completed}
-              onDelete={onDeleteTodo}
-              toggleTodo={onToggleTodo}
-            >
+            <Todo title={todo.title} id={todo.id} completed={todo.completed}>
               {todo.description}
             </Todo>
           </li>
