@@ -1,9 +1,14 @@
 import express from "express";
+import dotenv from "dotenv";
 import fs from "fs";
 import path from "path";
 import cors from "cors";
 import { fileURLToPath } from "url";
-import { FETCH_TIMEOUT, POST_TIMEOUT } from "./const.js";
+
+// Load environment variables from the .env file
+dotenv.config();
+const FETCH_TIMEOUT = process.env.FETCH_TIMEOUT || 0;
+const POST_TIMEOUT = process.env.POST_TIMEOUT || 0;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
