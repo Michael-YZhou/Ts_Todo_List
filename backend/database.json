@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Buy groceries",
+    "summary": "Milk, Bread, Eggs",
+    "completed": false
+  },
+  {
+    "id": 2,
+    "title": "Read a book",
+    "summary": "'The Great Gatsby'",
+    "completed": false
+  },
+  {
+    "id": 1735830066943,
+    "title": "New Todo",
+    "summary": "This is a new Todo!",
+    "completed": false
+  },
+  {
+    "id": 1735992509013,
+    "title": "Another todo",
+    "summary": "Yet another todo",
+    "completed": true
+  }
+]
