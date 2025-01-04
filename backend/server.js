@@ -11,6 +11,8 @@ const DATA_FILE = path.join(__dirname, "database.json");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+const TIMEOUT = 100; // timeout interval in milliseconds for simulating a slow network
+
 app.use(cors());
 app.use(express.json());
 
@@ -50,7 +52,7 @@ app.get("/todos", (req, res) => {
     // set a timeout to simulate a slow network
     setTimeout(() => {
       return res.json({ todos });
-    }, 500);
+    }, TIMEOUT);
   } catch (err) {
     return res
       .status(500)
@@ -84,7 +86,7 @@ app.post("/todos", (req, res) => {
     // set a timeout to simulate a slow network
     setTimeout(() => {
       return res.status(201).json(newTodo);
-    }, 500);
+    }, TIMEOUT);
   } catch (err) {
     return res
       .status(500)

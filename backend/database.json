@@ -9,7 +9,7 @@
     "id": 2,
     "title": "Read a book",
     "summary": "'The Great Gatsby'",
-    "completed": true
+    "completed": false
   },
   {
     "id": 1735830066943,
@@ -19,8 +19,8 @@
   },
   {
     "id": 1735992509013,
-    "title": "another todo",
-    "summary": "again a new todo",
+    "title": "Another todo",
+    "summary": "Yet another todo",
     "completed": true
   }
 ]

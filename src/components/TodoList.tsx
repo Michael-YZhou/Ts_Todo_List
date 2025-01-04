@@ -2,10 +2,10 @@ import { ReactNode } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Todo from "./Todo";
 import { FetchError } from "../types";
-import InfoBox from "./InfoBox";
+import InfoBox from "./UI/InfoBox";
 import { fetchTodos } from "../util/http";
-import LoadingIndicator from "./LoadingIndicator";
-import ErrorBlock from "./ErrorBlock";
+import LoadingIndicator from "./UI/LoadingIndicator";
+import ErrorBlock from "./UI/ErrorBlock";
 
 export default function TodoList() {
   // Fetch Todos from the server using React Query
