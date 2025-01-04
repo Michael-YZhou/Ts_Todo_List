@@ -43,7 +43,7 @@ export default function TodoList() {
             key={todo.id}
           >
             <Todo title={todo.title} id={todo.id} completed={todo.completed}>
-              {todo.description}
+              {todo.summary}
             </Todo>
           </li>
         ))}

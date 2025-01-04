@@ -1,12 +1,11 @@
-import { useState, type ReactNode } from "react";
+import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { queryClient } from "../util/http";
-import { deleteTodo } from "../util/http";
+import { queryClient, deleteTodo, updateTodo } from "../util/http";
 import Modal from "./UI/Modal";
 
 type TodoProps = {
   title: string;
-  children: ReactNode;
+  children: string;
   id: number;
   completed: boolean;
 };
@@ -14,13 +13,25 @@ type TodoProps = {
 export default function Todo({ title, children, id, completed }: TodoProps) {
   const [isDeleting, setIsDeleting] = useState(false);
 
-  const { mutate } = useMutation({
+  // Use the useMutation hook to delete a todo
+  const { mutate: deleteMutate } = useMutation({
     mutationFn: deleteTodo,
     onSuccess: () => {
       console.log(`Task ${title} deleted successfully`);
       // Invalidate the query to refetch the data
       queryClient.invalidateQueries({ queryKey: ["todos"] });
       // can navigate to a new page after delete success using navigate('/destination') if needed
+    },
+  });
+
+  // Use the useMutation hook to update a todo
+  const { mutate: patchMutate } = useMutation({
+    mutationFn: updateTodo,
+    onSuccess: () => {
+      console.log(`Task ${title} updated successfully`);
+      // Invalidate the query to refetch the data
+      queryClient.invalidateQueries({ queryKey: ["todos"] });
+      // can navigate to a new page after update success using navigate('/destination') if needed
     },
   });
 
@@ -33,7 +44,14 @@ export default function Todo({ title, children, id, completed }: TodoProps) {
   }
 
   function handleDelete() {
-    mutate({ id });
+    deleteMutate({ id });
+  }
+
+  function handleEdit() {
+    patchMutate({
+      id,
+      patchTodoData: { title, summary: children, completed: !completed },
+    });
   }
 
   return (
@@ -65,7 +83,7 @@ export default function Todo({ title, children, id, completed }: TodoProps) {
         <input
           type="checkbox"
           checked={completed}
-          onChange={() => {}}
+          onChange={handleEdit}
           className="mr-2"
         />
         <div>

@@ -16,5 +16,11 @@
     "title": "New Todo",
     "summary": "This is a new Todo!",
     "completed": false
+  },
+  {
+    "id": 1735992509013,
+    "title": "another todo",
+    "summary": "again a new todo",
+    "completed": true
   }
 ]

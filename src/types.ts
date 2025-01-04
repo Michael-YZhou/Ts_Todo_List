@@ -4,7 +4,7 @@
 export interface Todo {
   id: number;
   title: string;
-  description: string;
+  summary: string;
   completed: boolean;
 }
 
@@ -37,9 +37,18 @@ export interface FetchError<T> extends Error {
 /**
  * The properties needed to create a new todo and send in POST request
  */
-export interface CreateTodoRequest {
+export interface CreateTodoData {
   title: string;
   summary: string;
+}
+
+/**
+ * The properties needed to update a todo and send in PATCH request
+ */
+export interface PatchTodoData {
+  title: string;
+  summary: string;
+  completed: boolean;
 }
 
 /**
