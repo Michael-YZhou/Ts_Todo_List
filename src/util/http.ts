@@ -1,4 +1,5 @@
 import { QueryClient } from "@tanstack/react-query";
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 import {
   Todo,
   FetchTodosSuccessResponse,
@@ -20,7 +21,7 @@ export const queryClient = new QueryClient();
  * @returns an array of todos
  */
 export async function fetchTodos(): Promise<Todo[]> {
-  const response = await fetch("http://localhost:3000/todos");
+  const response = await fetch(`${BASE_URL}/todos`);
 
   if (!response.ok) {
     // Read the error response in typed form
@@ -55,7 +56,7 @@ export async function fetchTodo({
   id: number;
   signal: AbortSignal;
 }): Promise<Todo> {
-  const response = await fetch(`http://localhost:3000/todos/${id}`, { signal });
+  const response = await fetch(`${BASE_URL}/todos/${id}`, { signal });
 
   if (!response.ok) {
     // Read the error response in typed form
@@ -84,7 +85,7 @@ export async function fetchTodo({
  * @returns the created todo
  */
 export async function createNewTodo(todoData: CreateTodoData): Promise<Todo> {
-  const response = await fetch("http://localhost:3000/todos", {
+  const response = await fetch(`${BASE_URL}/todos`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(todoData),
@@ -116,7 +117,7 @@ export async function createNewTodo(todoData: CreateTodoData): Promise<Todo> {
  * @returns the deleted todo
  */
 export async function deleteTodo({ id }: { id: number }): Promise<Todo> {
-  const response = await fetch(`http://localhost:3000/todos/${id}`, {
+  const response = await fetch(`${BASE_URL}/todos/${id}`, {
     method: "DELETE",
   });
 
@@ -151,7 +152,7 @@ export async function updateTodo({
   id: number;
   patchTodoData: PatchTodoData;
 }): Promise<Todo> {
-  const response = await fetch(`http://localhost:3000/todos/${id}`, {
+  const response = await fetch(`${BASE_URL}/todos/${id}`, {
     method: "PATCH",
     body: JSON.stringify(patchTodoData),
     headers: {

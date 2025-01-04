@@ -3,6 +3,7 @@ import fs from "fs";
 import path from "path";
 import cors from "cors";
 import { fileURLToPath } from "url";
+import { FETCH_TIMEOUT, POST_TIMEOUT } from "./const.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -10,8 +11,6 @@ const __dirname = path.dirname(__filename);
 const DATA_FILE = path.join(__dirname, "database.json");
 const app = express();
 const PORT = process.env.PORT || 3000;
-
-const TIMEOUT = 100; // timeout interval in milliseconds for simulating a slow network
 
 app.use(cors());
 app.use(express.json());
@@ -52,7 +51,7 @@ app.get("/todos", (req, res) => {
     // set a timeout to simulate a slow network
     setTimeout(() => {
       return res.json({ todos });
-    }, TIMEOUT);
+    }, FETCH_TIMEOUT);
   } catch (err) {
     return res
       .status(500)
@@ -86,7 +85,7 @@ app.post("/todos", (req, res) => {
     // set a timeout to simulate a slow network
     setTimeout(() => {
       return res.status(201).json(newTodo);
-    }, TIMEOUT);
+    }, POST_TIMEOUT);
   } catch (err) {
     return res
       .status(500)
